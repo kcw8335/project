@@ -1,3 +1,4 @@
 from django.shortcuts import render
 
-# Create your views here.
+def communityapp(request):
+    return render(request, 'communityapp.html')

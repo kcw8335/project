@@ -1,0 +1,7 @@
+<h1>공지사항</h1>
+
+{% for notice in notices.all %}
+<p>{{notice.title}}</p>
+<p>{{notice.pub_date}}</p>
+<p>{{notice.body}}</p>
+{% endfor %}

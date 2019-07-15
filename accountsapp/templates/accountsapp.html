@@ -1,3 +1,15 @@
 <h1>여기는 accounts.html 입니다. </h1>
 <h1>로그인 로그아웃 회원가입 메인 페이지</h1>
 <h1><a href="{% url 'home' %}">home.html</a></h1>
+
+{% if user.is_authenticated %}
+<p>{{user.username}}님! 로그인됨</p>
+<p><a href="javascript:{document.getElementById('logout').submit()}">로그아웃</a></p>
+<form id="logout" method="POST" action="{% url 'logout' %}">
+{% csrf_token %}
+<input type="hidden" />
+</form>
+{% else %}
+<p><a href="{% url 'login' %}">로그인</a></p>
+<p><a href="{% url 'signup' %}">회원가입</a></p>
+{% endif %}

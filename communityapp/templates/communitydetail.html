@@ -5,3 +5,10 @@
 <h1>본문 : {{communitydetail.body}}</h1>
 
 <a href="{% url 'community' %}">자유게시판 목록으로 돌아가기</a>
+
+{% if user.is_authenticated %}
+<a href="">수정</a>
+<a href="{% url 'communitydelete' community.id%}">삭제</a>
+{% else %}
+
+{% endif %}

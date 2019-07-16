@@ -1,6 +1,13 @@
 <h1>자유 게시판</h1>
 <h1>글 목록</h1>
+
+{% if user.is_authenticated %}
 <h1><a href="{% url 'communitywrite' %}">글쓰기</a></h1>
+{% else %}
+<h1>글쓰기는 회원만 가능합니다.</h1>
+<p><a href="{% url 'accountsapp' %}">accounts page 바로가기</a></p>
+{% endif %}
+
 <br>
 {% for community in posts %}
 <p>{{community.title}}</p>

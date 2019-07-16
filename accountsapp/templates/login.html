@@ -1,3 +1,4 @@
+{% load staticfiles %}
 {% if error %}
 {{ error }}
 <br><br>
@@ -20,3 +21,6 @@
 </form>
 
 <p><a href="{% url 'signup'%}">아이디가 없다면 회원가입</a></p>
+
+<p>연습사진</p>
+<img src="{% static '연습사진.png' %}" alt="연습사진">

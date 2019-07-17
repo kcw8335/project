@@ -3,7 +3,7 @@
 
 <h1>여기는 accounts.html 입니다. </h1>
 <h1>로그인 로그아웃 회원가입 메인 페이지</h1>
-
+<a href="{% url 'home' %}">home.html</a>
 {% if user.is_authenticated %}
 <p>{{user.username}}님! 로그인됨</p>
 <p><a href="javascript:{document.getElementById('logout').submit()}">로그아웃</a></p>

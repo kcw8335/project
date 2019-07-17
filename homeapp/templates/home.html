@@ -1,3 +1,5 @@
+{% extends 'base.html' %}
+{% block contents %}
 {% load staticfiles %}
 <h1>여기는 home.html 입니다. </h1>
 <h1><a href="{% url 'home' %}">home.html</a></h1>
@@ -5,19 +7,6 @@
 <h1><a href="{% url 'writeapp' %}">writeapp 바로가기</a></h1>
 <h1><a href="{% url 'communityapp' %}">communityapp 바로가기</a></h1>
 <h1><a href="{% url 'accountsapp' %}">accountsapp 바로가기</a></h1>
-
 <p>연습사진</p>
 <img src="{% static '연습사진.png' %}" alt="연습사진">
-
-{% if user.is_authenticated %}
-<p>{{user.username}}님! 로그인됨</p>
-<p><a href="{% url 'accountsapp' %}">accounts page 바로가기</a></p>
-<p><a href="javascript:{document.getElementById('logout').submit()}">로그아웃</a></p>
-<form id="logout" method="POST" action="{% url 'logout' %}">
-{% csrf_token %}
-<input type="hidden" />
-</form>
-{% else %}
-<p>guest로 접속 중!</p>
-<p><a href="{% url 'accountsapp' %}">accounts page 바로가기</a></p>
-{% endif %}
+{% endblock %}

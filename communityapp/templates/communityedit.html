@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block contents %}
+<form action="{% url 'communityedit' community.id %}" method="POST">
+    {% csrf_token %}
+    <h1>제목 : </h1>
+    <input type="text" name="title" value="{{community.title}}">
+    <br>
+    <h1>본문 : </h1>
+    <textarea name="body" cols="30" rows="10">{{community.body}}</textarea>
+    <br>
+    <input type="submit" value="등록하기">
+</form>
+
+
+{% endblock %}

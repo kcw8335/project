@@ -9,6 +9,20 @@
 <body>
     <h1>템플릿 상속(navbar 영역)</h1>
     <a href="{% url 'home' %}">home으로 돌아가기</a>
+    
+    {% if user.is_authenticated %}
+    <p>{{user.username}}님! 로그인됨</p>
+    <p><a href="{% url 'accountsapp' %}">accounts page 바로가기</a></p>
+    <p><a href="javascript:{document.getElementById('logout').submit()}">로그아웃</a></p>
+    <form id="logout" method="POST" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <input type="hidden" />
+    </form>
+    
+    {% else %}
+    <p>guest로 접속 중!</p>
+    <p><a href="{% url 'accountsapp' %}">accounts page 바로가기</a></p>
+    {% endif %}
     <hr>
     {% block contents %}
     {% endblock %}

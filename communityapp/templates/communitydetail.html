@@ -1,3 +1,5 @@
+{% extends 'base.html' %}
+{% block contents %}
 <h1>자유게시판에 글을 자세히 보여주는 페이지입니다.</h1>
 <br>
 <h1>제목 : {{communitydetail.title}}</h1>
@@ -6,9 +8,42 @@
 
 <a href="{% url 'community' %}">자유게시판 목록으로 돌아가기</a>
 
-{% if user.is_authenticated %}
-<a href="">수정</a>
-<a href="{% url 'communitydelete' community.id%}">삭제</a>
-{% else %}
 
+{% if communitydetail.user == request.user %}
+<a href="{% url 'communityedit' communitydetail.id %}">수정</a>
+<a href="{% url 'communitydelete' communitydetail.id %}">삭제</a> <!--보안 문제 해결법 찾기-->
+{% else %}
 {% endif %}
+
+
+{% if user.is_authenticated %}
+<h1>댓글</h1>
+<form action="{% url 'commentadd' communitydetail.id %}" method="POST">
+    {% csrf_token %}
+    내용 : 
+    <input type="text" name="body">
+    <input type="submit" value="제출">
+</form>
+{% else %}
+<h1>댓글작성은 회원만 가능합니다.</h1>
+{% endif %}
+
+
+{% for comment in communitydetail.comments.all %}
+    {{comment.user.username}} : {{comment.body}}
+    {% if comment.user == request.user %}
+        <a href="{% url 'commentedit' comment.id %}">댓글 수정</a>
+        <a href="javascript:{
+            var form = document.getElementById('commentdelete');
+            form.action = '/communityapp/commentdelete/{{comment.id}}';
+            form.submit();}">댓글 삭제</a>
+    {% endif %}
+    <br>
+{% endfor %}
+
+<form id="commentdelete" method="POST" action="">
+    {% csrf_token %}
+    <input type="hidden">
+</form>
+
+{% endblock %}

@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+{% block contents %}
+
 <h1>여기는 communityapp.html 입니다.</h1>
 <h1>게시판, 공지사항 메인 페이지</h1>
 <h1><a href="{% url 'home' %}">home.html</a></h1>
@@ -5,3 +8,6 @@
 
 <h2><a href="{% url 'notice' %}">notice</a></h2>
 <h2><a href="{% url 'community' %}">community</a></h2>
+
+
+{% endblock %}

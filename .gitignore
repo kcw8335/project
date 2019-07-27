@@ -1,4 +1,3 @@
-
 # Created by https://www.gitignore.io/api/django
 # Edit at https://www.gitignore.io/?templates=django
 
@@ -10,8 +9,6 @@ __pycache__/
 local_settings.py
 db.sqlite3
 media
-
-
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
